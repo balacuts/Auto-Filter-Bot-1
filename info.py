@@ -45,9 +45,6 @@ else:
     ADMINS = [int(admins) for admins in ADMINS.split()]
 
 # Channels
-INDEX_CHANNELS = [int(index_channels) if index_channels.startswith("-") else index_channels for index_channels in environ.get('INDEX_CHANNELS', '').split()]
-if len(INDEX_CHANNELS) == 0:
-    print('Info - INDEX_CHANNELS is empty')
 LOG_CHANNEL = environ.get('LOG_CHANNEL', '')
 if len(LOG_CHANNEL) == 0:
     print('Error - LOG_CHANNEL is missing, exiting now')
@@ -55,13 +52,6 @@ if len(LOG_CHANNEL) == 0:
 else:
     LOG_CHANNEL = int(LOG_CHANNEL)
 
-# support group
-SUPPORT_GROUP = environ.get('SUPPORT_GROUP', '')
-if len(SUPPORT_GROUP) == 0:
-    print('Error - SUPPORT_GROUP is missing, exiting now')
-    exit()
-else:
-    SUPPORT_GROUP = int(SUPPORT_GROUP)
 
 # MongoDB information
 DATABASE_URL = environ.get('DATABASE_URL', "")
@@ -106,32 +96,6 @@ AUTO_FILTER = is_enabled('AUTO_FILTER', True)
 IMDB = is_enabled('IMDB', True)
 SPELL_CHECK = is_enabled("SPELL_CHECK", True)
 SHORTLINK = is_enabled('SHORTLINK', False)
-
-#premium info
-PAYMENT_QR = environ.get('PAYMENT_QR', 'http://graph.org/file/cacbbea472e5a48ce0d64.jpg')
-OWNER_UPI_ID = environ.get('OWNER_UPI_ID', 'sampleupi@upi')
-
-# for stream
-IS_STREAM = is_enabled('IS_STREAM', True)
-BIN_CHANNEL = environ.get("BIN_CHANNEL", "")
-if len(BIN_CHANNEL) == 0:
-    print('Error - BIN_CHANNEL is missing, exiting now')
-    exit()
-else:
-    BIN_CHANNEL = int(BIN_CHANNEL)
-URL = environ.get("URL", "")
-if len(URL) == 0:
-    print('Error - URL is missing, exiting now')
-    exit()
-else:
-    if URL.startswith(('https://', 'http://')):
-        if not URL.endswith("/"):
-            URL += '/'
-    elif is_valid_ip(URL):
-        URL = f'http://{URL}/'
-    else:
-        print('Error - URL is not valid, exiting now')
-        exit()
 
 #start_command_reactions
 REACTIONS = ["🤝", "😇", "🤗", "😍", "👍", "🎅", "😐", "🥰", "🤩", "😱", "🤣", "😘", "👏", "😛", "😈", "🎉", "⚡️", "🫡", "🤓", "😎", "🏆", "🔥", "🤭", "🌚", "🆒", "👻", "😁"] #don't add any emoji because tg not support all emoji reactions
