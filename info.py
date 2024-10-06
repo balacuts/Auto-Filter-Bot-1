@@ -45,9 +45,6 @@ else:
     ADMINS = [int(admins) for admins in ADMINS.split()]
 
 # Channels
-INDEX_CHANNELS = [int(index_channels) if index_channels.startswith("-") else index_channels for index_channels in environ.get('INDEX_CHANNELS', '').split()]
-if len(INDEX_CHANNELS) == 0:
-    print('Info - INDEX_CHANNELS is empty')
 LOG_CHANNEL = environ.get('LOG_CHANNEL', '')
 if len(LOG_CHANNEL) == 0:
     print('Error - LOG_CHANNEL is missing, exiting now')
@@ -55,13 +52,6 @@ if len(LOG_CHANNEL) == 0:
 else:
     LOG_CHANNEL = int(LOG_CHANNEL)
 
-# support group
-SUPPORT_GROUP = environ.get('SUPPORT_GROUP', '')
-if len(SUPPORT_GROUP) == 0:
-    print('Error - SUPPORT_GROUP is missing, exiting now')
-    exit()
-else:
-    SUPPORT_GROUP = int(SUPPORT_GROUP)
 
 # MongoDB information
 DATABASE_URL = environ.get('DATABASE_URL', "")
